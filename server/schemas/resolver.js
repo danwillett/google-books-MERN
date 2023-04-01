@@ -3,11 +3,11 @@ const {User} = require('../models')
 const {signToken} = require('../utils')
 
 const resolvers = {
-    // Query: {
-    //     user: async (parent, {userId}) => {
-    //         return await User.findOne({_id: userId})
-    //     }
-    // },
+    Query: {
+        user: async (parent, {userId}) => {
+            return await User.findOne({_id: userId})
+        }
+    },
 
     Mutation: {
         // recieves username, email, and password input from client side and creates new account 
