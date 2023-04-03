@@ -24,17 +24,16 @@ type Auth {
     user: User
 }
 
-type Query {
-    me: [User]
+type Query { 
+    me(userId: ID!): User
 }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, password: String!, email: String!): Auth
-    saveBook(author: [String]!, description: String, title: String!, image: String!, link: String!): User
-    removeBook(bookId: String!): User
+    saveBook(author: [String]!, bookId: String!, description: String!, title: String!, image: String!, link: String!, userId: ID!): User
+    removeBook(bookId: String!, userId: ID!): User
 }
-
 `
 
 module.exports = typeDefs;
