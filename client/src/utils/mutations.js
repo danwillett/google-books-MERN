@@ -4,47 +4,45 @@ export const LOGIN_USER = gql`
     mutation loginUser($email: String!, $password: String!) {
         login(email: $email, password: $password) {
             token
-            User {
-                _id
-                username
-                
-            }
         }
     }
 `;
 
 export const ADD_USER = gql`
-    mutation addUser($email: String!, $password: String!, $username: String!) {
-        addUser(email: $email, password: $password, username: $username) {
-            token
-            User {
-                _id
-                username
-            }
+    mutation addUser($username: String!, $password: String!, $email: String!) {
+        addUser(username: $username, password: $password, email: $email) {
+          token
+            
         }
-    }
+      }
 `;
 
 export const SAVE_BOOK = gql`
-    mutation saveBook($author: [String]!, $description: String, $title: String!, $image: String!, $link: String!) {
-        saveBook(author: $author, description: $description, title: $title, image: $image, link: $link) {
-            User {
-                _id
-                username
-                savedBooks
-            }
-        }
+mutation saveBook($authors: [String]!, $bookId: String!, $description: String!, $title: String!, $image: String!, $link: String!, $userId: ID!) {
+    saveBook(authors: $authors, bookId: $bookId, description: $description, title: $title, image: $image, link: $link, userId: $userId) {
+      savedBooks {
+        title
+        authors
+        bookId
+        description
+        image
+        link
+      }
     }
+  }
 `;
 
 export const REMOVE_BOOK = gql`
-    mutation removeBook($bookId: String!) {
-        removeBook(bookId: $bookId) {
-            User {
-                _id
-                username
-                savedBooks
-            }
+    mutation removeBook($bookId: String!, $userId: ID!) {
+        removeBook(bookId: $bookId, userId: $userId) {
+            savedBooks {
+                title
+                authors
+                bookId
+                description
+                image
+                link
+              }
         }
     }
 `

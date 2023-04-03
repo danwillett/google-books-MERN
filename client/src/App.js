@@ -1,19 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-// import apollo packages
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider , createHttpLink} from '@apollo/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { setContext } from '@apollo/client/link/context';
-
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
+
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -30,6 +24,7 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
+console.log(authLink)
 
 const client = new ApolloClient({
   // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
@@ -37,19 +32,30 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+console.log(client)
 
 function App() {
   return (
-    <ApolloClient client={client}>
+    <ApolloProvider client={client}>
     <Router>
       <>
         <Navbar />
-          <Route exact path='/' component={SearchBooks} />
-          <Route exact path='/saved' component={SavedBooks} />
+        <Routes>
+          <Route 
+            exact path='/' 
+            element={<SearchBooks />} 
+            // element={<h3>hey bitch</h3>}
+            />
+          <Route 
+            path='/saved'
+            element={<SavedBooks />} 
+          />
           <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+        </Routes>          
       </>
     </Router>
-    </ApolloClient>
+    </ApolloProvider>
+  
   );
 }
 
