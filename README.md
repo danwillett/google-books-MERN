@@ -26,4 +26,4 @@ Docs on configuring MongoDB server in Heroku: https://www.mongodb.com/developer/
 
 ## License
 
-ISC
+MIT
