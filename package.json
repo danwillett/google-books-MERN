@@ -7,10 +7,10 @@
     "start": "node server/server",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "danwillett",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
