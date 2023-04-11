@@ -43,8 +43,7 @@ function App() {
         <Routes>
           <Route 
             exact path='/' 
-            element={<SearchBooks />} 
-            // element={<h3>hey bitch</h3>}
+            element={<SearchBooks />}
             />
           <Route 
             path='/saved'
